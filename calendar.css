@@ -34,19 +34,24 @@ body {
   white-space: nowrap;
 }
 
+.calendar-header span {
+  display: flex;
+  font-size: 1.7em;
+}
+
 .calendar-header button {
-  width: 2em;
+  width: 4.4em;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #2d2d2d;
   border: none;
   color: #fff;
-  padding: 10px 10px 25px; /* збільшили для телефонив */
+  padding: 10px ; /* збільшили для телефонив */
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
-  font-size: 3em; /* збільшили для легшого натискання */
+  font-size: 2em; /* збільшили для легшого натискання */
 }
 
 .calendar-header button:hover {
