@@ -1,51 +1,116 @@
 body {
-      background: #121212;
-      color: #eee;
-      font-family: Arial, sans-serif;
-    }
+  background: #121212;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-    #calendar {
-      font-size: 0.6em;
-      width: 95vw; /* ширина = ширина вікна мінус 5px */
-      height: 95vh;
-      max-width: 100%;           /* щоб не виходило за межі екрану */
-      margin: 30px auto;
-      background: #1e1e1e;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-      padding: 10px;
-    }
+/* Контейнер календаря */
+#calendar {
+  width: 95vw;
+  max-width: 100%;
+  height: auto;
+  max-height: 95vh;
+  margin: 10px auto;
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  padding: 5px;
+  box-sizing: border-box;
+}
 
+/* Кастомна шапка */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+}
 
-    /* Текст у клітинках */
-    .fc .fc-daygrid-day-number {
-      color: #ddd;
-    }
+.calendar-header button {
+  background: #2d2d2d;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 20px;
+}
 
-    /* Дні з іншого місяця */
-    .fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-frame {
-      background: #2a2a2a;
-      opacity: 0.3;
-      pointer-events: none;
-      user-select: none;
-    }
+.calendar-header button:hover {
+  background: #444;
+}
 
-    /* Звичайні дні */
-    .fc .fc-daygrid-day-frame {
-      background: #1e1e1e;
-      border-radius: 6px;
-      transition: background 0.2s;
-      cursor: pointer;
-    }
+/* Текст у клітинках */
+.fc .fc-daygrid-day-number {
+  color: #ddd;
+  font-size: 4vw; /* масштабування під ширину екрану */
+  text-align: center;
+  line-height: 1.2em;
+}
 
-    /* Ховер ефект */
-    .fc .fc-daygrid-day-frame:hover {
-      background: #2d2d2d;
-    }
+/* Дні з іншого місяця */
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-frame {
+  background: #2a2a2a;
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
 
-    /* Вибрана дата */
-    .fc-daygrid-day.selected-date .fc-daygrid-day-frame {
-      background: #003a7c !important;
-      border-radius: 0;
-      color: #fff !important;
-    }
+/* Звичайні дні */
+.fc .fc-daygrid-day-frame {
+  background: #1e1e1e;
+  border-radius: 6px;
+  transition: background 0.2s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc((95vw - 10px) / 7); /* динамічна висота для 7 днів на рядок */
+}
+
+/* Ховер ефект */
+.fc .fc-daygrid-day-frame:hover {
+  background: #2d2d2d;
+}
+
+/* Вибрана дата */
+.fc-daygrid-day.selected-date .fc-daygrid-day-frame {
+  background: #003a7c !important;
+  color: #fff !important;
+}
+
+/* Адаптивність для маленьких екранів */
+@media (max-width: 480px) {
+  #calendar {
+    width: 95vw;
+    padding: 5px;
+    max-height: 90vh;
+  }
+
+  .calendar-header {
+    font-size: 18px;
+    gap: 6px;
+  }
+
+  .calendar-header button {
+    padding: 4px 8px;
+    font-size: 16px;
+  }
+
+  .fc .fc-daygrid-day-number {
+    font-size: 6vw;
+  }
+
+  .fc .fc-daygrid-day-frame {
+    height: calc((95vw - 10px) / 7);
+  }
+}

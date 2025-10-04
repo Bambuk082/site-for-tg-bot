@@ -1,28 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        dateClick: function(info) {
-          // Перевірка: чи дата з поточного місяця
-          const clicked = info.date;
-          const current = calendar.getDate();
-          if (clicked.getFullYear() !== current.getFullYear() ||
-              clicked.getMonth() !== current.getMonth()) {
-            return;
-          }
+  const calendarEl = document.getElementById('calendar');
+  const monthLabel = document.getElementById('month-label');
 
-          // Прибираємо попередній вибір
-          document.querySelectorAll('.fc-daygrid-day').forEach(day => {
-            day.classList.remove('selected-date');
-          });
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    headerToolbar: false,
+    contentHeight: 'auto'
+  });
 
-          // Додаємо клас вибраній клітинці
-          info.dayEl.classList.add('selected-date');
+  calendar.render();
 
-          // Виводимо дату
-        //   alert('Вибрана дата: ' + info.dateStr);
-        }
+  // Оновлення місяця у шапці
+  function updateMonthLabel() {
+    const date = calendar.getDate();
+    const monthNames = [
+      "Січень","Лютий","Березень","Квітень","Травень","Червень",
+      "Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"
+    ];
+    monthLabel.textContent = monthNames[date.getMonth()] + " " + date.getFullYear();
+  }
+
+  updateMonthLabel();
+
+  // Кнопки перемикання
+  document.getElementById('prev').addEventListener('click', () => {
+    calendar.prev();
+    updateMonthLabel();
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    calendar.next();
+    updateMonthLabel();
+  });
+
+  // Вибір дати
+  calendarEl.addEventListener('click', function(e){
+    if(e.target.closest('.fc-daygrid-day')){
+      document.querySelectorAll('.fc-daygrid-day').forEach(day => {
+        day.classList.remove('selected-date');
       });
-
-      calendar.render();
-    });
+      e.target.closest('.fc-daygrid-day').classList.add('selected-date');
+    }
+  });
+});
