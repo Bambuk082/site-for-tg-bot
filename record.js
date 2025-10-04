@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  const tg = window.Telegram?.WebApp;
+
+if (tg) {
+  console.log("✅ Telegram WebApp підключено");
+  tg.expand(); // щоб відкрилося на весь екран
+} else {
+  console.log("❌ Telegram WebApp не знайдено");
+}
+
+
+
   const calendarEl = document.getElementById('calendar');
   const monthLabel = document.getElementById('month-label');
 
@@ -38,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Ініціалізуємо Telegram WebApp (якщо є)
-  const tg = window.Telegram?.WebApp;
+  
 
   // Вибір дати
   calendarEl.addEventListener('click', function(e) {
