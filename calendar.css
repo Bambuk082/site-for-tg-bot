@@ -5,7 +5,8 @@ body {
     }
 
     #calendar {
-      width: calc(100vw - 5px); /* ширина = ширина вікна мінус 5px */
+      width: 95vw; /* ширина = ширина вікна мінус 5px */
+      height: 95vh;
       max-width: 100%;           /* щоб не виходило за межі екрану */
       margin: 30px auto;
       background: #1e1e1e;
