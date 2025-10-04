@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const monthLabel = document.getElementById('month-label');
 
   const today = new Date();
-  const tg = window.Telegram.WebApp;
-  tg.expand();
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     headerToolbar: false,
