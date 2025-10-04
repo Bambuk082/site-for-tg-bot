@@ -6,17 +6,19 @@ body {
     }
 
     #calendar {
-      max-width: 450px;
+      max-width: 900px;
       margin: 30px auto;
       background: #1e1e1e;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
       padding: 10px;
+      
     }
 
     /* Текст у клітинках */
     .fc .fc-daygrid-day-number {
       color: #ddd;
+      font-size: 2em;
     }
 
     /* Дні з іншого місяця */
@@ -45,4 +47,21 @@ body {
       background: #003a7c !important;
       border-radius: 0;
       color: #fff !important;
+      
     }
+@media (max-width: 480px) {
+    #calendar {
+        max-width: 100%;  /* на екранах <=480px ширина буде 100% */
+        padding: 5px;     /* зменшити паддінг, щоб не обрізалось */
+    }
+
+    .calendar-header {
+        font-size: 16px;  /* зменшити текст шапки на маленьких екранах */
+        gap: 6px;         /* зменшити відстань між кнопками і місяцем */
+    }
+
+    .calendar-header button {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+}
