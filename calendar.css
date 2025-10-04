@@ -5,6 +5,7 @@ body {
     }
 
     #calendar {
+      font-size: 0.6em;
       width: 95vw; /* ширина = ширина вікна мінус 5px */
       height: 95vh;
       max-width: 100%;           /* щоб не виходило за межі екрану */
