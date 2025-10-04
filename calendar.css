@@ -4,41 +4,38 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.calendar-header button {
+  background: #2d2d2d;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.calendar-header button:hover {
+  background: #444;
+}
+
 #calendar {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 0 auto;
   background: #1e1e1e;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.7);
   padding: 10px;
-}
-
-/* Хедер календаря */
-.fc-toolbar.fc-header-toolbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-}
-
-.fc-toolbar-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.fc .fc-button {
-  background: #2d2d2d;
-  border: none;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-
-.fc .fc-button:hover {
-  background: #444;
 }
 
 /* Текст у клітинках */
@@ -72,3 +69,4 @@ body {
   background: #003a7c !important;
   color: #fff !important;
 }
+

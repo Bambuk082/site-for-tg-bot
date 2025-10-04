@@ -1,15 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   const calendarEl = document.getElementById('calendar');
+  const monthLabel = document.getElementById('month-label');
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-
-    // ⚡️ Хедер в один рядок: кнопки + місяць
-    headerToolbar: {
-      left: 'prev',
-      center: 'title',
-      right: 'next'
-    },
+    headerToolbar: false, // ховаємо стандартний тулбар
 
     dateClick: function(info) {
       const clicked = info.date;
@@ -32,4 +27,28 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   calendar.render();
+
+  // Функція для оновлення тексту місяць/рік
+  function updateMonthLabel() {
+    const date = calendar.getDate();
+    const monthNames = [
+      "Січень","Лютий","Березень","Квітень","Травень","Червень",
+      "Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"
+    ];
+    monthLabel.textContent = monthNames[date.getMonth()] + " " + date.getFullYear();
+  }
+
+  updateMonthLabel();
+
+  // Навігація
+  document.getElementById('prev').addEventListener('click', () => {
+    calendar.prev();
+    updateMonthLabel();
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    calendar.next();
+    updateMonthLabel();
+  });
 });
+
