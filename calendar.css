@@ -1,72 +1,47 @@
 body {
-  background: #121212;
-  color: #eee;
-  font-family: Arial, sans-serif;
-}
+      background: #121212;
+      color: #eee;
+      font-family: Arial, sans-serif;
+    }
 
-.calendar-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-}
+    #calendar {
+      min-width: 950px;
+      margin: 30px auto;
+      background: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+      padding: 10px;
+    }
 
-.calendar-header button {
-  background: #2d2d2d;
-  border: none;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
+    /* Текст у клітинках */
+    .fc .fc-daygrid-day-number {
+      color: #ddd;
+    }
 
-.calendar-header button:hover {
-  background: #444;
-}
+    /* Дні з іншого місяця */
+    .fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-frame {
+      background: #2a2a2a;
+      opacity: 0.3;
+      pointer-events: none;
+      user-select: none;
+    }
 
-#calendar {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.7);
-  padding: 10px;
-}
+    /* Звичайні дні */
+    .fc .fc-daygrid-day-frame {
+      background: #1e1e1e;
+      border-radius: 6px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
 
-/* Текст у клітинках */
-.fc .fc-daygrid-day-number {
-  color: #ddd;
-}
+    /* Ховер ефект */
+    .fc .fc-daygrid-day-frame:hover {
+      background: #2d2d2d;
+    }
 
-/* Дні з іншого місяця */
-.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-frame {
-  background: #2a2a2a;
-  opacity: 0.3;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Звичайні дні */
-.fc .fc-daygrid-day-frame {
-  background: #1e1e1e;
-  border-radius: 6px;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-
-/* Ховер */
-.fc .fc-daygrid-day-frame:hover {
-  background: #2d2d2d;
-}
-
-/* Вибрана дата */
-.fc-daygrid-day.selected-date .fc-daygrid-day-frame {
-  background: #003a7c !important;
-  color: #fff !important;
-}
-
+    /* Вибрана дата */
+    .fc-daygrid-day.selected-date .fc-daygrid-day-frame {
+      background: #003a7c !important;
+      border-radius: 0;
+      color: #fff !important;
+    }
