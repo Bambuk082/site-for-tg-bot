@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  const tg = window.Telegram?.WebApp;
+const tg = window.Telegram?.WebApp;
 
 if (tg) {
   console.log("✅ Telegram WebApp підключено");
