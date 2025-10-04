@@ -4,6 +4,19 @@ body {
       font-family: Arial, sans-serif;
     }
 
+    .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap; /* щоб не переносило */
+    }
+
+    .calendar-header button,
+    .calendar-header span {
+    flex: 0 0 auto; /* не дає розтягуватись/ламатись */
+    }
+
     #calendar {
       max-width: 900px;
       margin: 30px auto;
