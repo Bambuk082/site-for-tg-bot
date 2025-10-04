@@ -2,10 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const calendarEl = document.getElementById('calendar');
   const monthLabel = document.getElementById('month-label');
 
+  const today = new Date();
+  const tg = window.Telegram.WebApp;
+  tg.expand();
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     headerToolbar: false,
-    contentHeight: 'auto'
+    contentHeight: 'auto',
+    validRange: {
+      start: today // не дає гортати назад до минулих місяців
+    }
   });
 
   calendar.render();
@@ -24,8 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Кнопки перемикання
   document.getElementById('prev').addEventListener('click', () => {
-    calendar.prev();
-    updateMonthLabel();
+    // перевірка, щоб не гортати назад до минулих місяців
+    const prevMonth = new Date(calendar.getDate());
+    prevMonth.setMonth(prevMonth.getMonth());
+    if (prevMonth >= today) {
+      calendar.prev();
+      updateMonthLabel();
+    }
   });
 
   document.getElementById('next').addEventListener('click', () => {
