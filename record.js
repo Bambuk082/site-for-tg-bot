@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   calendar.render();
 
-  const tg = window.Telegram.WebApp;
+ 
 
   // Оновлення місяця у шапці
   function updateMonthLabel() {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.next();
     updateMonthLabel();
   });
-
+  const tg = window.Telegram.WebApp;
   // Вибір дати
   calendarEl.addEventListener('click', function(e){
     if(e.target.closest('.fc-daygrid-day')){
