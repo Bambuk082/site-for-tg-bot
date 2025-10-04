@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   calendar.render();
 
+  window.addEventListener("DOMContentLoaded", () => {
+  const tg = window.Telegram.WebApp;
+  tg.expand();
+  });
+
+
   // Оновлення місяця у шапці
   function updateMonthLabel() {
     const date = calendar.getDate();
