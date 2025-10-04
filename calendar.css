@@ -4,21 +4,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.calendar-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 20px auto;
-  font-size: 18px;
-  white-space: nowrap; /* щоб не переносило */
-}
-
-.calendar-header button,
-.calendar-header span {
-  flex: 0 0 auto; /* не дає ламатись */
-}
-
 #calendar {
   max-width: 900px;
   margin: 30px auto;
@@ -26,6 +11,34 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.7);
   padding: 10px;
+}
+
+/* Хедер календаря */
+.fc-toolbar.fc-header-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.fc-toolbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.fc .fc-button {
+  background: #2d2d2d;
+  border: none;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.fc .fc-button:hover {
+  background: #444;
 }
 
 /* Текст у клітинках */
@@ -49,7 +62,7 @@ body {
   cursor: pointer;
 }
 
-/* Ховер ефект */
+/* Ховер */
 .fc .fc-daygrid-day-frame:hover {
   background: #2d2d2d;
 }
@@ -57,6 +70,5 @@ body {
 /* Вибрана дата */
 .fc-daygrid-day.selected-date .fc-daygrid-day-frame {
   background: #003a7c !important;
-  border-radius: 0;
   color: #fff !important;
 }

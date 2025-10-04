@@ -1,67 +1,35 @@
-class Calendar {
-  constructor(containerEl, labelEl) {
-    this.container = containerEl;
-    this.labelEl = labelEl;
+document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
 
-    const today = new Date();
-    this.month = today.getMonth() + 1; // 1–12
-    this.year = today.getFullYear();
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
 
-    this.render();
-  }
+    // ⚡️ Хедер в один рядок: кнопки + місяць
+    headerToolbar: {
+      left: 'prev',
+      center: 'title',
+      right: 'next'
+    },
 
-  updateLabel() {
-    const monthNames = [
-      "Січень","Лютий","Березень","Квітень","Травень","Червень",
-      "Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"
-    ];
-    this.labelEl.textContent = `${monthNames[this.month - 1]} ${this.year}`;
-  }
+    dateClick: function(info) {
+      const clicked = info.date;
+      const current = calendar.getDate();
 
-  render() {
-    this.container.innerHTML = "";
-    this.updateLabel();
+      // Ігноруємо кліки по інших місяцях
+      if (clicked.getFullYear() !== current.getFullYear() ||
+          clicked.getMonth() !== current.getMonth()) {
+        return;
+      }
 
-    const daysContainer = document.createElement("div");
-    daysContainer.style.marginTop = "10px";
+      // Прибираємо попередній вибір
+      document.querySelectorAll('.fc-daygrid-day').forEach(day => {
+        day.classList.remove('selected-date');
+      });
 
-    const daysInMonth = new Date(this.year, this.month, 0).getDate();
-    for (let d = 1; d <= daysInMonth; d++) {
-      const dayEl = document.createElement("span");
-      dayEl.textContent = d;
-      dayEl.style.margin = "0 5px";
-      daysContainer.appendChild(dayEl);
+      // Додаємо клас вибраній клітинці
+      info.dayEl.classList.add('selected-date');
     }
+  });
 
-    this.container.appendChild(daysContainer);
-  }
-
-  goNext() {
-    if (this.month < 12) {
-      this.month += 1;
-    } else {
-      this.month = 1;
-      this.year += 1;
-    }
-    this.render();
-  }
-
-  goPrev() {
-    if (this.month > 1) {
-      this.month -= 1;
-    } else {
-      this.month = 12;
-      this.year -= 1;
-    }
-    this.render();
-  }
-}
-
-// ініціалізація
-const cal = new Calendar(
-  document.getElementById("calendar"),
-  document.getElementById("month-label")
-);
-
-document.getElementById("prev").onclick = () => cal.goPrev();
-document.getElementById("next").onclick = () => cal.goNext();
+  calendar.render();
+});
