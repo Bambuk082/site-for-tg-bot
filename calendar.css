@@ -2,10 +2,11 @@ body {
       background: #121212;
       color: #eee;
       font-family: Arial, sans-serif;
+      
     }
 
     #calendar {
-      min-width: 350px;
+      max-width: 900px;
       margin: 30px auto;
       background: #1e1e1e;
       border-radius: 10px;
