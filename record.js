@@ -1,35 +1,27 @@
 class Calendar {
-  constructor(containerEl) {
+  constructor(containerEl, labelEl) {
     this.container = containerEl;
+    this.labelEl = labelEl;
+
     const today = new Date();
     this.month = today.getMonth() + 1; // 1–12
     this.year = today.getFullYear();
+
     this.render();
   }
 
+  updateLabel() {
+    const monthNames = [
+      "Січень","Лютий","Березень","Квітень","Травень","Червень",
+      "Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"
+    ];
+    this.labelEl.textContent = `${monthNames[this.month - 1]} ${this.year}`;
+  }
+
   render() {
-    // Очистити контейнер
     this.container.innerHTML = "";
+    this.updateLabel();
 
-    // Створити кнопки назад / вперед
-    const btnPrev = document.createElement("button");
-    btnPrev.textContent = "<";
-    btnPrev.onclick = () => { this.goPrev(); };
-
-    const btnNext = document.createElement("button");
-    btnNext.textContent = ">";
-    btnNext.onclick = () => { this.goNext(); };
-
-    const header = document.createElement("div");
-    header.textContent = `${this.year} — ${this.month}`;
-    header.style.display = "inline-block";
-    header.style.margin = "0 10px";
-
-    this.container.appendChild(btnPrev);
-    this.container.appendChild(header);
-    this.container.appendChild(btnNext);
-
-    // Генерація днів місяця
     const daysContainer = document.createElement("div");
     daysContainer.style.marginTop = "10px";
 
@@ -65,5 +57,11 @@ class Calendar {
   }
 }
 
-// Припустимо є <div id="calendar"></div> в HTML
-const cal = new Calendar(document.getElementById("calendar"));
+// ініціалізація
+const cal = new Calendar(
+  document.getElementById("calendar"),
+  document.getElementById("month-label")
+);
+
+document.getElementById("prev").onclick = () => cal.goPrev();
+document.getElementById("next").onclick = () => cal.goNext();
