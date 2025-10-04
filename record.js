@@ -2,23 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const calendarEl = document.getElementById('calendar');
   const monthLabel = document.getElementById('month-label');
 
+  
+
   const today = new Date();
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+    
     headerToolbar: false,
     contentHeight: 'auto',
-    validRange: {
-      start: today // не дає гортати назад до минулих місяців
-    }
   });
 
   calendar.render();
 
-  window.addEventListener("DOMContentLoaded", () => {
   const tg = window.Telegram.WebApp;
-  tg.expand();
-  });
-
 
   // Оновлення місяця у шапці
   function updateMonthLabel() {
@@ -55,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         day.classList.remove('selected-date');
       });
       e.target.closest('.fc-daygrid-day').classList.add('selected-date');
+      const data = (e.target.closest('.fc-daygrid-day').textContent + ' ' + monthLabel.textContent)
+      tg.sendData(JSON.stringify({ date: data }));
+      tg.close()
     }
   });
 });
