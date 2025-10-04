@@ -2,20 +2,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const calendarEl = document.getElementById('calendar');
   const monthLabel = document.getElementById('month-label');
 
-  
-
   const today = new Date();
   const calendar = new FullCalendar.Calendar(calendarEl, {
-    
     headerToolbar: false,
     contentHeight: 'auto',
   });
 
   calendar.render();
 
- 
-
-  // Оновлення місяця у шапці
   function updateMonthLabel() {
     const date = calendar.getDate();
     const monthNames = [
@@ -27,32 +21,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
   updateMonthLabel();
 
-  // Кнопки перемикання
+  // кнопка "назад" — блокуємо минулі місяці
   document.getElementById('prev').addEventListener('click', () => {
-    // перевірка, щоб не гортати назад до минулих місяців
-    const prevMonth = new Date(calendar.getDate());
-    prevMonth.setMonth(prevMonth.getMonth());
-    if (prevMonth >= today) {
+    const currentDate = calendar.getDate();
+    const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    if (prevMonth >= new Date(today.getFullYear(), today.getMonth(), 1)) {
       calendar.prev();
       updateMonthLabel();
     }
   });
 
+  // кнопка "вперед"
   document.getElementById('next').addEventListener('click', () => {
     calendar.next();
     updateMonthLabel();
   });
-  const tg = window.Telegram.WebApp;
+
+  // Ініціалізуємо Telegram WebApp (якщо є)
+  const tg = window.Telegram?.WebApp;
+
   // Вибір дати
-  calendarEl.addEventListener('click', function(e){
-    if(e.target.closest('.fc-daygrid-day')){
+  calendarEl.addEventListener('click', function(e) {
+    const dayCell = e.target.closest('.fc-daygrid-day');
+    if (dayCell) {
       document.querySelectorAll('.fc-daygrid-day').forEach(day => {
         day.classList.remove('selected-date');
       });
-      e.target.closest('.fc-daygrid-day').classList.add('selected-date');
-      const data = (e.target.closest('.fc-daygrid-day').textContent + ' ' + monthLabel.textContent)
-      tg.sendData(JSON.stringify({ date: data }));
-      tg.close()
+      dayCell.classList.add('selected-date');
+      const data = (dayCell.textContent.trim() + ' ' + monthLabel.textContent);
+
+      if (tg) {
+        tg.sendData(JSON.stringify({ date: data }));
+        tg.close();
+      } else {
+        console.log("Дата вибрана:", data); // для тестів у браузері
+      }
     }
   });
 });
+
