@@ -35,14 +35,18 @@ body {
 }
 
 .calendar-header button {
+  width: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #2d2d2d;
   border: none;
   color: #fff;
-  padding: 6px 14px;
+  padding: 10px 10px 25px; /* збільшили для телефонив */
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
-  font-size: 20px;
+  font-size: 3em; /* збільшили для легшого натискання */
 }
 
 .calendar-header button:hover {
@@ -89,7 +93,7 @@ body {
 }
 
 /* Адаптивність для маленьких екранів */
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   #calendar {
     width: 95vw;
     padding: 5px;
@@ -97,13 +101,15 @@ body {
   }
 
   .calendar-header {
-    font-size: 18px;
-    gap: 6px;
+    font-size: 20px;
+    gap: 8px;
   }
 
+
   .calendar-header button {
-    padding: 4px 8px;
-    font-size: 16px;
+    padding: 12px 22px;
+    font-size: 5em; /* кнопки більші на телефоні */
+    
   }
 
   .fc .fc-daygrid-day-number {
