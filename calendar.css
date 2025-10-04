@@ -5,13 +5,15 @@ body {
     }
 
     #calendar {
-      max-width: 900px;
+      width: calc(100vw - 5px); /* ширина = ширина вікна мінус 5px */
+      max-width: 100%;           /* щоб не виходило за межі екрану */
       margin: 30px auto;
       background: #1e1e1e;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
       padding: 10px;
     }
+
 
     /* Текст у клітинках */
     .fc .fc-daygrid-day-number {
